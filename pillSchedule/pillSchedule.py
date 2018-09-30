@@ -16,7 +16,7 @@ def pillSchedule(numPills, pillSize, startTime, frequency):
 	return schedule
 
 def printSchedule(schedule):
-	print("{} {:0>2} {:0>2}".format(schedule.Time.strftime('%a %I:%M'), schedule.Pill, schedule.Leftover))
+	print("{}  {:0>2}   {:0>2}".format(schedule.Time.strftime('%a %I:%M'), schedule.Pill, schedule.Leftover))
 
 def main():
 	parser = argparse.ArgumentParser(description="Determine how long pills last")
@@ -25,8 +25,10 @@ def main():
 	parser.add_argument('-f', '--frequency', default=6, help='The freuency that the pills are taken in hours')
 	args = parser.parse_args()
 
-	for schedule in pillSchedule(float(args.numPills), float(args.pillSize), datetime.now(), args.frequency):
+	print("Time       Pill  Pills Left")
+	for schedule in pillSchedule(float(args.numPills), float(args.pillSize), datetime.now(), float(args.frequency)):
 		printSchedule(schedule)
 
 if __name__ == "__main__":
 	main()
+
